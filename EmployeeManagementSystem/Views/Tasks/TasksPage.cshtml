@@ -1,0 +1,30 @@
+﻿@model List<EmployeeManagementSystem.Models.Tasks>;
+@{
+    ViewData["Title"] = "TasksPage";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h1>TasksPage</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Assigned To</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.AssignedEmployeeId</td>
+                <td>@task.DueDate.ToShortDateString()</td>
+                <td>@task.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>

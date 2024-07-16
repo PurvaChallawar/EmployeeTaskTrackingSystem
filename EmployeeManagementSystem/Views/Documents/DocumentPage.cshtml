@@ -1,0 +1,48 @@
+﻿@model List<EmployeeManagementSystem.Models.Document>;
+@{
+    ViewData["Title"] = "DocumentPage";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h1>DocumentPage</h1>
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Document ID</th>
+                <th>Task ID</th>
+                <th>File Path</th>
+                <th>Uploaded At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in Model)
+            {
+                <tr>
+                    <td>@document.DocumentId</td>
+                    <td>@document.TaskId</td>
+                    <td><a href="@document.FilePath" target="_blank">View File</a></td>
+                    <td>@document.UploadedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No documents found.</p>
+}
+
+<hr />
+
+<h2>Upload Document</h2>
+
+<form asp-controller="Documents" asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="file">Choose File:</label>
+        <input type="file" id="file" name="file" class="form-control-file" required>
+        <span  class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
